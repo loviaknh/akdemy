@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Académie d'Art et de Scène</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de couleurs */
+        :root {
+            --cacao-clair: #f5e7d3;
+            --jaune: #ffd54f;
+            --blanc: #ffffff;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--blanc);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 5%;
+            background-color: var(--blanc);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            height: auto;
+            width: 100px;
+            max-width: 130px;
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--jaune);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Page titre */
+        .page-title {
+            background-color: var(--cacao-clair);
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title p {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 213, 79, 0.3);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -70px;
+            left: -70px;
+            width: 250px;
+            height: 250px;
+            background-color: rgba(255, 213, 79, 0.2);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--jaune);
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--cacao-clair);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content p, .info-content a {
+            color: var(--text-color);
+            line-height: 1.6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: var(--jaune);
+        }
+
+        .social-media {
+            margin-top: 2rem;
+        }
+
+        .social-media h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--cacao-clair);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--jaune);
+            transform: translateY(-5px);
+        }
+
+        /* Formulaire de contact */
+        .contact-form {
+            flex: 1.5;
+            min-width: 300px;
+            background-color: var(--blanc);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 213, 79, 0.1);
+            border-radius: 0 0 0 100%;
+            z-index: -1;
+        }
+
+        .contact-form::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(245, 231, 211, 0.3);
+            border-radius: 0 100% 0 0;
+            z-index: -1;
+        }
+
+        .contact-form h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--jaune);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: var(--blanc);
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--jaune);
+            box-shadow: 0 0 0 3px rgba(255, 213, 79, 0.3);
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: var(--jaune);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Map section */
+        .map-section {
+            padding: 0;
+            height: 450px;
+            position: relative;
+        }
+
+        .map-container {
+            height: 100%;
+            width: 100%;
+            filter: grayscale(20%);
+        }
+
+        /* FAQs Section */
+        .faq-section {
+            padding: 4rem 5%;
+            background-color: var(--cacao-clair);
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--jaune);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: var(--blanc);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(255, 213, 79, 0.1);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: var(--blanc);
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--jaune);
+        }
+
+        .footer-section a {
+            color: var(--blanc);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--jaune);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--blanc);
+                padding-top: 80px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header avec le logo et la navigation -->
+    <header>
+        <div class="logo-container">
+        <a href="index.html">
+            <img src="/image/logo.png" alt="Logo Académie d'Art et de Scène" class="logo">
+        </a>
+            <!--<div class="logo-text">Académie d'Art et de Scène</div>-->
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#cours">Nos Cours</a></li>
+                <li><a href="index.html#about">À Propos</a></li>
+                <li><a href="index.html#galerie">Galerie</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Titre de la page -->
+    <section class="page-title">
+        <h1>Contactez-nous</h1>
+        <p>Nous sommes à votre écoute pour toutes vos questions et demandes d'information</p>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact-section">
+        <div class="contact-info animate">
+            <h2>Informations de Contact</h2>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-content">
+                    <h3>Notre adresse</h3>
+                    <p>123 Rue de l'Institut Francais<br>75000 Cotonou<br>Benin</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="info-content">
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:+22901584567">+229 01 58 45 67 89</a></p>
+                    <p><a href="tel:+22901584568">+229 01 58 45 67 90</a></p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                    <h3>Email</h3>
+                    <p><a href="mailto:contact@academieartscene.com">contact@academieartscene.com</a></p>
+                    <p><a href="mailto:info@academieartscene.com">info@academieartscene.com</a></p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="info-content">
+                    <h3>Heures d'ouverture</h3>
+                    <p>Lundi - Vendredi: 9h00 - 18h00<br>Samedi: 9h00 - 14h00<br>Dimanche: Fermé</p>
+                </div>
+            </div>
+            
+            <div class="social-media">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form animate delay-1">
+            <h2>Envoyez-nous un message</h2>
+            
+            <form id="contactForm" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="nom">Nom*</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="prenom">Prénom*</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="email">Email*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sujet">Sujet*</label>
+                    <select id="sujet" name="sujet" required>
+                        <option value="">Sélectionnez un sujet</option>
+                        <option value="renseignement">Renseignement général</option>
+                        <option value="inscription">Inscription aux cours</option>
+                        <option value="partenariat">Proposition de partenariat</option>
+                        <option value="evenement">Informations événements</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message*</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newsletter">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        Je souhaite recevoir la newsletter et les informations sur les événements à venir
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-submit">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Section Carte -->
+    <section class="map-section animate delay-2">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126840.96713386697!2d2.275853861879897!3d6.368179099999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023552b2c00fba5%3A0x263e7bbd93ec3322!2sInstitut%20Fran%C3%A7ais%20du%20B%C3%A9nin!5e0!3m2!1sfr!2sfr!4v1711151392157!5m2!1sfr!2sfr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Section FAQ -->
+    <section class="faq-section animate delay-3">
+        <h2>Questions Fréquentes</h2>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment s'inscrire aux cours ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pour vous inscrire, vous pouvez soit remplir le formulaire de contact sur cette page, vous présenter à notre accueil aux heures d'ouverture, ou nous appeler par téléphone. Nous vous guiderons ensuite à travers le processus d'inscription et vous aiderons à choisir les cours qui correspondent le mieux à vos aspirations.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quels sont les tarifs des cours ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Les tarifs varient selon le type de cours, la durée et la fréquence. Nous proposons des formules adaptées à tous les budgets, ainsi que des réductions pour les inscriptions annuelles et les familles. N'hésitez pas à nous contacter pour obtenir notre grille tarifaire détaillée.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Y a-t-il une limite d'âge pour s'inscrire ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Non, notre académie accueille des élèves de tous âges ! Nous proposons des cours adaptés aux enfants dès 4 ans, aux adolescents, aux adultes et même aux seniors. Chaque tranche d'âge bénéficie d'une approche pédagogique spécifique.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Peut-on louer vos espaces pour des événements ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui, nous proposons la location de certains de nos espaces (studios de danse, salle de spectacle, auditorium) pour des événements culturels, des ateliers ou des répétitions. Contactez-nous pour discuter de votre projet et vérifier les disponibilités.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Proposez-vous des cours d'essai ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolument ! Nous offrons la possibilité de participer à un cours d'essai pour vous permettre de découvrir notre approche pédagogique et vous assurer que le cours correspond à vos attentes. Contactez-nous pour réserver votre séance d'essai.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>123 Rue de l'Institut Francais<br>75000 Cotonou<br>Benin</p>
+                <p>Email: contact@academieartscene.com<br>Tél: +229 01 58 45 67 89</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="#cours">Nos Cours</a></li>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Académie d'Art et de Scène. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du menu hamburger
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+
+            // Gestion des FAQs
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    question.classList.toggle('active');
+                    const answer = question.nextElementSibling;
+                    answer.classList.toggle('active');
+                });
+            });
+
+            // Animation au scroll
+            const animateElements = document.querySelectorAll('.animate');
+            
+            function checkScroll() {
+                const triggerBottom = window.innerHeight * 0.8;
+                
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    
+                    if (elementTop < triggerBottom) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            window.addEventListener('resize', checkScroll);
+            checkScroll();
+        });
+    </script>
+</body>
+</html>
+<html lang="fr">
+<head>
